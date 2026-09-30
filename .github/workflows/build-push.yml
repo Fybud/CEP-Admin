@@ -1,6 +1,6 @@
 name: build-push
 
-# Build CEP Admin images → Docker Hub → notify FiberAI Deploy.
+# Build CEP Admin images → Docker Hub → notify fybud Deploy.
 # Client platform images live in Fybud/CEP — not here.
 
 on:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKERHUB_ORG: fiberai
+  DOCKERHUB_ORG: fybud
   TOOL: cep-admin
 
 jobs:
@@ -59,7 +59,7 @@ jobs:
     if: success()
     runs-on: ubuntu-latest
     steps:
-      - name: Notify FiberAI Deploy
+      - name: Notify fybud Deploy
         env:
           DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
           DEPLOY_WEBHOOK_SECRET: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}

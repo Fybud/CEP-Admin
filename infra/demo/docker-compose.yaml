@@ -4,7 +4,7 @@ name: cep-admin-demo
 
 services:
   admin-api:
-    image: fiberai/cep-admin-api:${IMAGE_TAG:-latest}
+    image: fybud/cep-admin-api:${IMAGE_TAG:-latest}
     restart: unless-stopped
     env_file: [.env]
     environment:
@@ -14,7 +14,7 @@ services:
     networks: [fybud-net]
 
   admin-web:
-    image: fiberai/cep-admin:${IMAGE_TAG:-latest}
+    image: fybud/cep-admin:${IMAGE_TAG:-latest}
     restart: unless-stopped
     env_file: [.env]
     environment:
