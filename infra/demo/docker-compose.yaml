@@ -1,6 +1,4 @@
-# CEP-Admin — demo only (image-only). Never deploy admin to client tenants.
-# Domains: cep-admin.fybud.com / api.cep-admin.fybud.com
-# Shared Postgres: role/DB cep-admin-demo (password random, set by Deploy).
+﻿# CEP-Admin — demo only. Shared Postgres: fybud-postgres on fybud-net (root docker-compose.db.yml).
 
 name: cep-admin-demo
 
@@ -13,7 +11,7 @@ services:
       ADMIN_DATABASE_URL: ${ADMIN_DATABASE_URL:?ADMIN_DATABASE_URL required}
     ports:
       - "127.0.0.1:${API_HOST_PORT:-4200}:4200"
-    networks: [fiberai-net]
+    networks: [fybud-net]
 
   admin-web:
     image: fiberai/cep-admin:${IMAGE_TAG:-latest}
@@ -25,8 +23,9 @@ services:
     ports:
       - "127.0.0.1:${WEB_HOST_PORT:-4201}:5173"
     depends_on: [admin-api]
-    networks: [fiberai-net]
+    networks: [fybud-net]
 
 networks:
-  fiberai-net:
+  fybud-net:
+    name: fybud-net
     external: true
