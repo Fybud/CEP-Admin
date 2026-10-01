@@ -7,6 +7,13 @@ services:
     restart: unless-stopped
     env_file: [.env]
     environment:
+      # Paste in the Deploy UI (Settings → Tool specs → requiredEnv): empty value = "needs pasting".
+      GOOGLE_CLIENT_ID:
+      GOOGLE_CLIENT_SECRET:
+      # Also read by admin-api (the image ships dev fallbacks — paste the real values in production).
+      JWT_SECRET:
+      SUPER_ADMIN_EMAIL:
+      # Deploy-injected — never pasted.
       ADMIN_DATABASE_URL: ${ADMIN_DATABASE_URL:?ADMIN_DATABASE_URL required}
     ports:
       - "127.0.0.1:${API_HOST_PORT}:4200"
