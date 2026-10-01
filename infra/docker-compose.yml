@@ -15,11 +15,13 @@ services:
       SUPER_ADMIN_EMAIL:
       # Deploy-injected — never pasted.
       ADMIN_DATABASE_URL: ${ADMIN_DATABASE_URL:?ADMIN_DATABASE_URL required}
+      ADMIN_API_BASE_URL: ${ADMIN_API_BASE_URL:?ADMIN_API_BASE_URL required}
     ports:
       - "127.0.0.1:${API_HOST_PORT}:4200"
     labels:
       fybud.expose: "true"
       fybud.domain: api.cep-admin.fybud.com
+      fybud.role: api
       # admin-api exposes no health route and auth-guards every path — process-up probe.
       fybud.health: "any"
     healthcheck:
@@ -42,6 +44,7 @@ services:
     labels:
       fybud.expose: "true"
       fybud.domain: cep-admin.fybud.com
+      fybud.role: web
       fybud.health: "/"
     depends_on: [admin-api]
     networks: [internal]
