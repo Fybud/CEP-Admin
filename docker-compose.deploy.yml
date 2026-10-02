@@ -38,7 +38,7 @@ services:
     env_file: [.env]
     environment:
       VITE_API_BASE_URL: ${ADMIN_API_BASE_URL:?ADMIN_API_BASE_URL required}
-      VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:?GOOGLE_CLIENT_ID required}
     ports:
       - "127.0.0.1:${WEB_HOST_PORT}:5173"
     labels:
