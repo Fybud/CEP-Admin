@@ -1,5 +1,6 @@
 # CEP-Admin — public admin UI + API.
 # Only Deploy-injected: IMAGE_TAG + *_HOST_PORT. Everything else = paste (.env.deploy).
+# GOOGLE_CLIENT_SECRET / DB_NAME / ADMIN_API_BASE_URL are unused by the app — not declared.
 name: cep-admin
 
 services:
@@ -9,12 +10,9 @@ services:
     env_file: [.env]
     environment:
       GOOGLE_CLIENT_ID:
-      GOOGLE_CLIENT_SECRET:
       JWT_SECRET:
       SUPER_ADMIN_EMAIL:
-      DB_NAME:
       ADMIN_DATABASE_URL:
-      ADMIN_API_BASE_URL:
     ports:
       - "127.0.0.1:${API_HOST_PORT}:4200"
     labels:
