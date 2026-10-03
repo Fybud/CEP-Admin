@@ -33,7 +33,8 @@ type Session = {
   _count: { events: number };
 };
 
-const API_BASE = envOr("VITE_API_BASE_URL", "http://localhost:4200/api/v1");
+const rawApiBase = envOr("VITE_API_BASE_URL", "http://localhost:4200");
+const API_BASE = rawApiBase.endsWith("/api/v1") ? rawApiBase : `${rawApiBase.replace(/\/$/, "")}/api/v1`;
 
 export function App() {
   const [isDark, setIsDark] = useState(() => localStorage.getItem("theme") === "dark");

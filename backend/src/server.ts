@@ -51,7 +51,7 @@ function publicOrganization(org: {
   return { ...org, dbUrlConfigured: Boolean(org.dbUrl) };
 }
 
-app.post<{ Body: { credential?: string } }>("/auth/admin-login", async (request, reply) => {
+app.post<{ Body: { credential?: string } }>("/api/v1/auth/admin-login", async (request, reply) => {
   const { credential } = request.body ?? {};
   if (!credential) {
     return reply.code(400).send({ error: "Google credential required" });
@@ -99,7 +99,7 @@ app.post<{ Body: { credential?: string } }>("/auth/admin-login", async (request,
 // Middleware for admin routes
 app.addHook("preHandler", async (request, reply) => {
   if (request.method === "OPTIONS") return;
-  if (request.url.includes("/auth/admin-login")) return;
+  if (request.url.includes("/api/v1/auth/admin-login")) return;
 
   const authHeader = request.headers.authorization;
   const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
