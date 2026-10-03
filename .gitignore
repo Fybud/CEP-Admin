@@ -6,7 +6,6 @@ build
 !.env.example
 .env.local
 seed.creds.json
-client/platform-api/seed.creds.json
 **/seed.creds.json
 *.log
 .DS_Store
@@ -14,10 +13,9 @@ coverage
 .turbo
 .vite
 *.tsbuildinfo
-client/platform-api/dist
-client/platform-api/src/generated
-client/platform-web/dist
-packages/channels/dist
+
+# Local symlink/copy of Fybud/CEP platform-api (Docker clones it at build time)
+/platform-api/
 
 # Local admin tools
 

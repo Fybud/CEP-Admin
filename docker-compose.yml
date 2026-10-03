@@ -1,0 +1,31 @@
+name: cep-admin
+
+# Local build only. Production uses root docker-compose.deploy.yml (image-only).
+# Admin API image clones Fybud/CEP platform-api at build time for tenant Prisma.
+
+services:
+  admin-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4200:4200"
+    networks:
+      - cep-network
+
+  admin-web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "4201:5173"
+    networks:
+      - cep-network
+
+networks:
+  cep-network:
+    external: true
